@@ -1,44 +1,37 @@
 // List of commands that do not require API calls
 
 import { terminalConfig } from "@/terminal.config";
+import { projects } from "./api-commands";
 
 // List of all available commands
-export const COMMANDS = [
-    "about",
-    "banner",
-    "bing",
-    "cd",
-    "date",
-    "echo",
-    "email",
-    "emacs",
-    "github",
-    "google",
-    "help",
-    "ls",
-    "nvim",
-    "projects",
-    "quote",
-    "readme",
-    "reddit",
-    "vi",
-    "vim",
-    "weather",
-    "whoami",
-] as const;
+const CATEGORIES = {
+    "Info & Contact": ["about", "email", "github", "projects", "readme", "whoami"],
+    "System & Cmds": ["banner", "cd", "date", "help", "ls"],
+    "Web & Tools": ["bing", "google", "quote", "reddit", "weather"],
+    "Editors & Fun": ["echo", "emacs", "nvim", "vi", "vim"]
+} as const;
 
-// Help
+export const COMMANDS = Object.values(CATEGORIES).flat().sort();
+
 // Help
 export const help = async (args: string[]): Promise<string> => {
     let c = "";
-    for (let i = 0; i < COMMANDS.length; i++) {
-        if (i % 6 === 0 && i !== 0) {
-            c += "\n";
+
+    for (const [category, commands] of Object.entries(CATEGORIES)) {
+        c += `${category}:\n`;
+        for (let i = 0; i < commands.length; i++) {
+            if (i % 3 === 0 && i !== 0) {
+                c += "\n";
+            }
+            const cmd = commands[i];
+            const spaces = " ".repeat(12 - cmd.length);
+            c += `  <span class="cursor-pointer hover:underline" onclick="window.executeCommand('${cmd}')">${cmd}</span>${spaces}`;
         }
-        c += COMMANDS[i].padEnd(12, " ");
+        c += "\n\n";
     }
+
     return `Welcome! Here are all the available commands:
-\n${c}\n
+\n${c}
 [tab]: trigger completion.
 [ctrl+l]/clear: clear terminal.\n
 `;
@@ -61,7 +54,7 @@ export const email = async (args: string[]): Promise<string> => {
 };
 
 export const github = async (args: string[]): Promise<string> => {
-    window.open(`https://github.com/${terminalConfig.social.github}/`);
+    window.open(`https://github.com/${terminalConfig.social.github}`);
     return "Opening github...";
 };
 
@@ -95,11 +88,7 @@ export const whoami = async (args: string[]): Promise<string> => {
 };
 
 export const ls = async (args: string[]): Promise<string> => {
-    return `a
-bunch
-of
-fake
-directories`;
+    return await projects(args);
 };
 
 export const cd = async (args: string[]): Promise<string> => {
@@ -131,14 +120,19 @@ export const emacs = async (args?: string[]): Promise<string> => {
 // Banner
 export const banner = (args?: string[]): string => {
     return `
+<div class="ascii-art">
 ██╗  ██╗      ████████╗███████╗██████╗ ███╗   ███╗██╗███╗   ██╗ █████╗ ██╗     
 ╚██╗██╔╝      ╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██║████╗  ██║██╔══██╗██║     
  ╚███╔╝ █████╗   ██║   █████╗  ██████╔╝██╔████╔██║██║██╔██╗ ██║███████║██║     
  ██╔██╗ ╚════╝   ██║   ██╔══╝  ██╔══██╗██║╚██╔╝██║██║██║╚██╗██║██╔══██║██║     
 ██╔╝ ██╗         ██║   ███████╗██║  ██║██║ ╚═╝ ██║██║██║ ╚████║██║  ██║███████╗
 ╚═╝  ╚═╝         ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝
+</div>
+Type or click '<span class="cursor-pointer hover:underline" onclick="window.executeCommand('help')">help</span>' to see the list of available commands.
 
-Type 'help' to see the list of available commands.
+My Sites:
+<a class="text-terminal-blue hover:underline" href="https://xera-2011.github.io" target="_blank">xera-2011.github.io</a>
+<a class="text-terminal-blue hover:underline" href="https://x-texas-holdem.pages.dev" target="_blank">x-texas-holdem.pages.dev</a>
 `;
 };
 

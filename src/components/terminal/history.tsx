@@ -17,9 +17,9 @@ export const History: React.FC<HistoryProps> = ({ history }) => {
                         <div className="flex-grow">{entry.command}</div>
                     </div>
 
-                    <p
-                        className="whitespace-pre-wrap mb-2"
-                        style={{ lineHeight: "normal" }}
+                    <div
+                        className="whitespace-pre overflow-x-auto w-full mb-2"
+                        style={{ lineHeight: "1.5" }}
                         dangerouslySetInnerHTML={{ __html: entry.output }}
                     />
                 </div>

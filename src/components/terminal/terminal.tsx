@@ -5,6 +5,9 @@ import { useHistory } from "@/lib/history";
 import { History } from "./history";
 import { Input } from "./input";
 import { banner } from "@/lib/commands";
+import { shell } from "@/lib/shell";
+
+// ...
 
 export const Terminal: React.FC = () => {
     const inputRef = useRef<HTMLInputElement>(null);
@@ -25,6 +28,20 @@ export const Terminal: React.FC = () => {
     useEffect(() => {
         init();
     }, [init]);
+
+    // Expose executeCommand to window for clickable commands in HTML output
+    useEffect(() => {
+        (window as any).executeCommand = async (cmd: string) => {
+            setCommand(cmd);
+            await shell(cmd, setHistory, clearHistory, setCommand);
+        };
+        return () => {
+            // cleanup if needed
+            delete (window as any).executeCommand;
+        };
+    }, [setHistory, clearHistory, setCommand]);
+
+    // ...
 
     useEffect(() => {
         if (inputRef.current) {
