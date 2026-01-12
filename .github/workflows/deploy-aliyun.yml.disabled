@@ -1,0 +1,96 @@
+name: Deploy to Aliyun
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'next.config.ts'
+      - '.github/workflows/deploy-aliyun.yml'
+  workflow_dispatch:
+
+env:
+  CI: true
+  TZ: Asia/Shanghai
+  ALIYUN_HOST: ${{ secrets.ALIYUN_HOST }}
+  # Define base path here for consistency
+  NEXT_PUBLIC_BASE_PATH: /x-terminal
+
+jobs:
+  deploy:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: "10.26.1"
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build for Aliyun
+        run: pnpm run build
+
+      - name: Check build output
+        run: |
+          if [ ! -d "out" ] || [ -z "$(ls -A out)" ]; then
+            echo "Error: Build output directory 'out' is empty or does not exist."
+            exit 1
+          fi
+
+      - name: Deploy to server
+        if: ${{ env.ALIYUN_HOST != '' }}
+        uses: easingthemes/ssh-deploy@v5.1.1
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.ALIYUN_SSH_KEY }}
+          REMOTE_HOST: ${{ secrets.ALIYUN_HOST }}
+          REMOTE_USER: ${{ secrets.ALIYUN_USER }}
+          SOURCE: 'out/'
+          # Target matches basePath: /x-terminal -> /opt/xera/html/x-terminal
+          # Upload to a temporary directory first to prevent downtime/corruption if connection drops
+          TARGET: '/opt/xera/html/x-terminal-temp/' 
+          ARGS: '-avz --delete'
+
+      - name: Finalize Deployment & Reload Nginx
+        if: ${{ env.ALIYUN_HOST != '' }}
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.ALIYUN_HOST }}
+          username: ${{ secrets.ALIYUN_USER }}
+          key: ${{ secrets.ALIYUN_SSH_KEY }}
+          script: |
+            TARGET="/opt/xera/html/x-terminal"
+            TEMP="/opt/xera/html/x-terminal-temp"
+            
+            # Verify upload
+            if [ -d "$TEMP" ] && [ "$(ls -A $TEMP)" ]; then
+              echo "New version uploaded successfully. Swapping..."
+              
+              # Atomic swap strategy
+              # 1. Remove old version
+              rm -rf "$TARGET"
+              
+              # 2. Move temp to target
+              mv "$TEMP" "$TARGET"
+              
+              echo "Swap successful."
+              
+              # Reload Nginx to ensure caches are cleared if necessary
+              docker exec xera-nginx nginx -s reload || true
+            else
+              echo "Error: Temp directory is empty or missing. Deployment aborted."
+              exit 1
+            fi

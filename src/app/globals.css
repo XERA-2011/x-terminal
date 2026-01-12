@@ -1,0 +1,83 @@
+@import "tailwindcss";
+@source "../components/**/*.{ts,tsx}";
+@source "../hooks/**/*.{ts,tsx}";
+@source "../lib/**/*.{ts,tsx}";
+
+/* Hack Nerd Font - for proper ASCII art display */
+@font-face {
+  font-family: 'Hack';
+  src: url('/fonts/Hack-NF.ttf') format('truetype');
+  font-display: swap;
+}
+
+/* Tailwind CSS v4 Theme Configuration */
+@theme {
+  /* Primary theme colors */
+  --color-theme-black: #000000;
+  --color-theme-white: #ffffff;
+  --color-theme-black-90: rgba(0, 0, 0, 0.9);
+  --color-theme-black-75: rgba(0, 0, 0, 0.75);
+  --color-theme-black-50: rgba(0, 0, 0, 0.5);
+  --color-theme-black-25: rgba(0, 0, 0, 0.25);
+  --color-theme-black-10: rgba(0, 0, 0, 0.1);
+  --color-theme-white-90: rgba(255, 255, 255, 0.9);
+  --color-theme-white-75: rgba(255, 255, 255, 0.75);
+  --color-theme-white-50: rgba(255, 255, 255, 0.5);
+  --color-theme-white-25: rgba(255, 255, 255, 0.25);
+  --color-theme-white-10: rgba(255, 255, 255, 0.1);
+
+  /* Terminal colors - Classic Dark Theme */
+  --color-terminal-background: #000000;
+  --color-terminal-foreground: #FFFFFF;
+  --color-terminal-yellow: #F1C40F;
+  --color-terminal-green: #2ECC71;
+  --color-terminal-gray: #808080;
+  --color-terminal-blue: #3498DB;
+  --color-terminal-red: #E74C3C;
+}
+
+@layer base {
+  * {
+    @apply outline-terminal-foreground/50;
+  }
+
+  body {
+    background-color: var(--color-terminal-background);
+    color: var(--color-terminal-foreground);
+    line-height: inherit;
+  }
+}
+
+/* Mask for Game Log */
+.mask-linear-fade {
+  mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+}
+
+/* Terminal specific styles */
+.terminal-container {
+  background-color: var(--color-terminal-background);
+  color: var(--color-terminal-foreground);
+  font-family: 'Hack', monospace;
+}
+
+.terminal-container input {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  caret-color: var(--color-terminal-foreground);
+}
+
+/* Classic terminal selection: White background, Black text */
+.terminal-container ::selection {
+  background-color: var(--color-terminal-foreground);
+  color: var(--color-terminal-background);
+}
+
+/* Override body styles for terminal page */
+.bg-terminal-background {
+  background-color: var(--color-terminal-background) !important;
+}
+
+.text-terminal-foreground {
+  color: var(--color-terminal-foreground) !important;
+}

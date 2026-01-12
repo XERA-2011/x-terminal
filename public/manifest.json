@@ -1,0 +1,16 @@
+{
+    "name": "x-terminal",
+    "short_name": "x-terminal",
+    "description": "A terminal-style portfolio website.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#000000",
+    "theme_color": "#000000",
+    "icons": [
+        {
+            "src": "favicon.ico",
+            "sizes": "any",
+            "type": "image/x-icon"
+        }
+    ]
+}
