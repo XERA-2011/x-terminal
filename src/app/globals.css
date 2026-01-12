@@ -61,18 +61,12 @@
 }
 
 @media (max-width: 640px) {
+
   .terminal-container {
     /* Auto scale font size based on viewport width */
     font-size: max(10px, 2.5vw);
     line-height: normal;
     /* Tighten line height for smaller text */
-  }
-
-  .ascii-art {
-    font-size: 0.5em;
-    /* Shrink ASCII art further on mobile to fit screen */
-    line-height: 1;
-    white-space: pre;
   }
 }
 

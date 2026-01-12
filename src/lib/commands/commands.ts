@@ -119,21 +119,49 @@ export const emacs = async (args?: string[]): Promise<string> => {
 
 // Banner
 export const banner = (args?: string[]): string => {
-    return `
-<div class="ascii-art">
-██╗  ██╗      ████████╗███████╗██████╗ ███╗   ███╗██╗███╗   ██╗ █████╗ ██╗     
-╚██╗██╔╝      ╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██║████╗  ██║██╔══██╗██║     
- ╚███╔╝ █████╗   ██║   █████╗  ██████╔╝██╔████╔██║██║██╔██╗ ██║███████║██║     
- ██╔██╗ ╚════╝   ██║   ██╔══╝  ██╔══██╗██║╚██╔╝██║██║██║╚██╗██║██╔══██║██║     
-██╔╝ ██╗         ██║   ███████╗██║  ██║██║ ╚═╝ ██║██║██║ ╚████║██║  ██║███████╗
-╚═╝  ╚═╝         ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝
-</div>
-Type or click '<span class="cursor-pointer hover:underline" onclick="window.executeCommand('help')">help</span>' to see the list of available commands.
+    const art = [
+        "██╗  ██╗",
+        "╚██╗██╔╝",
+        " ╚███╔╝ ",
+        " ██╔██╗ ",
+        "██╔╝ ██╗",
+        "╚═╝  ╚═╝",
+    ];
 
-My Sites:
-<a class="text-terminal-blue hover:underline" href="https://xera-2011.github.io" target="_blank">xera-2011.github.io</a>
-<a class="text-terminal-blue hover:underline" href="https://x-texas-holdem.pages.dev" target="_blank">x-texas-holdem.pages.dev</a>
-`;
+    const infoData = [
+        { label: "System", value: `<a class="text-terminal-blue hover:underline" href="https://github.com/xera-2011/x-terminal" target="_blank">X-TERMINAL</a>` },
+        { label: "Sites", value: `<a class="text-terminal-blue hover:underline" href="https://xera-2011.github.io" target="_blank">XERA-2011</a> <a class="text-terminal-blue hover:underline" href="https://x-texas-holdem.pages.dev" target="_blank">x-texas-holdem</a>` },
+        { label: "Social", value: `<a class="text-terminal-blue hover:underline" href="https://x.com/XERA_2011" target="_blank">X (Twitter)</a>` },
+    ];
+
+    let output = `<div class="mb-2 flex flex-row gap-4 items-start text-left">`;
+
+    // Left: Art
+    // Scaling Y to fix the aspect ratio, using margin-bottom to compensate for layout overlap (since transform doesn't    // Left: Art
+    output += `<div class="ascii-art font-mono whitespace-pre text-terminal-foreground font-bold select-none text-[10px] sm:text-[16px]" style="line-height: 1.0;">`;
+    output += art.join("\n");
+    output += `</div>`;
+
+    // Right: Info (Grid Layout)
+    output += `<div class="grid grid-cols-[auto_1fr] gap-x-4 text-left w-full sm:w-auto">`;
+    infoData.forEach(item => {
+        if ((item as any).spacer) {
+            output += `<div class="col-span-2 h-2"></div>`;
+        } else {
+            const label = item.label ? `${item.label}:` : '';
+            if (item.label === '-------') {
+                output += `<div>-------</div><div>----------</div>`;
+            } else {
+                output += `<div class="font-bold">${label}</div>`;
+                output += `<div class="break-words">${item.value}</div>`;
+            }
+        }
+    });
+    output += `</div>`;
+
+    output += `</div>`;
+
+    output += `Type or click '<span class="cursor-pointer hover:underline" onclick="window.executeCommand('help')">help</span>' to see the list of available commands.`;
+
+    return output;
 };
-
-
