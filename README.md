@@ -1,2 +1,30 @@
 # x-terminal
 Terminal Web UI
+
+## 🌐 Live Deployments
+
+| Platform | URL |
+|----------|-----|
+| Cloudflare Pages | [x-terminal.pages.dev](https://x-terminal.pages.dev) |
+| Vercel | [x-terminal.vercel.app](https://x-terminal.vercel.app) |
+| GitHub Pages | [xera-2011.github.io/x-terminal](https://xera-2011.github.io/x-terminal) |
+
+## 🚀 Getting Started
+
+```bash
+# Install dependencies
+pnpm install
+
+# Run development server
+pnpm dev
+```
+
+Open [http://localhost:2011](http://localhost:2011) with your browser to see the result.
+
+## 📦 Build
+
+```bash
+pnpm build
+```
+
+Static output is generated in the `out/` directory.
