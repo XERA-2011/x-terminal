@@ -14,7 +14,7 @@ const CATEGORIES = {
 export const COMMANDS = Object.values(CATEGORIES).flat().sort();
 
 // Help
-export const help = async (args: string[]): Promise<string> => {
+export const help = async (): Promise<string> => {
     let c = "";
 
     for (const [category, commands] of Object.entries(CATEGORIES)) {
@@ -41,19 +41,19 @@ export const help = async (args: string[]): Promise<string> => {
 
 
 // About
-export const about = async (args: string[]): Promise<string> => {
+export const about = async (): Promise<string> => {
     return `Hi, I am ${terminalConfig.name}. 
 Welcome to my website!`;
 };
 
 
 // Contact
-export const email = async (args: string[]): Promise<string> => {
+export const email = async (): Promise<string> => {
     window.open(`mailto:${terminalConfig.email}`);
     return `Opening mailto:${terminalConfig.email}...`;
 };
 
-export const github = async (args: string[]): Promise<string> => {
+export const github = async (): Promise<string> => {
     window.open(`https://github.com/${terminalConfig.social.github}`);
     return "Opening github...";
 };
@@ -83,42 +83,42 @@ export const echo = async (args: string[]): Promise<string> => {
     return args.join(" ");
 };
 
-export const whoami = async (args: string[]): Promise<string> => {
+export const whoami = async (): Promise<string> => {
     return `${terminalConfig.ps1.username}`;
 };
 
-export const ls = async (args: string[]): Promise<string> => {
-    return await projects(args);
+export const ls = async (): Promise<string> => {
+    return await projects();
 };
 
-export const cd = async (args: string[]): Promise<string> => {
+export const cd = async (): Promise<string> => {
     return `unfortunately, i cannot afford more directories.`;
 };
 
-export const date = async (args: string[]): Promise<string> => {
+export const date = async (): Promise<string> => {
     return new Date().toString();
 };
 
-export const vi = async (args: string[]): Promise<string> => {
+export const vi = async (): Promise<string> => {
     return `woah, you still use 'vi'? just try 'vim'.`;
 };
 
-export const vim = async (args: string[]): Promise<string> => {
+export const vim = async (): Promise<string> => {
     return `'vim' is so outdated. how about 'nvim'?`;
 };
 
-export const nvim = async (args: string[]): Promise<string> => {
+export const nvim = async (): Promise<string> => {
     return `'nvim'? too fancy. why not 'emacs'?`;
 };
 
-export const emacs = async (args?: string[]): Promise<string> => {
+export const emacs = async (): Promise<string> => {
     return `you know what? just use vscode.`;
 };
 
 
 
 // Banner
-export const banner = (args?: string[]): string => {
+export const banner = (): string => {
     const art = [
         "██╗  ██╗",
         "╚██╗██╔╝",
@@ -128,7 +128,13 @@ export const banner = (args?: string[]): string => {
         "╚═╝  ╚═╝",
     ];
 
-    const infoData = [
+    interface InfoItem {
+        label: string;
+        value: string;
+        spacer?: boolean;
+    }
+
+    const infoData: InfoItem[] = [
         { label: "Github", value: `<a class="text-terminal-blue hover:underline" href="${terminalConfig.repo}" target="_blank">x-terminal</a>` },
         { label: "Sites", value: `<a class="text-terminal-blue hover:underline" href="https://xera-2011.github.io" target="_blank">XERA-2011</a> <a class="text-terminal-blue hover:underline" href="https://x-texas-holdem.pages.dev" target="_blank">x-texas-holdem</a>` },
         { label: "Social", value: `<a class="text-terminal-blue hover:underline" href="https://x.com/XERA_2011" target="_blank">𝕏 (Twitter)</a>` },
@@ -145,7 +151,7 @@ export const banner = (args?: string[]): string => {
     // Right: Info (Grid Layout)
     output += `<div class="grid grid-cols-[auto_1fr] gap-x-4 text-left w-full sm:w-auto">`;
     infoData.forEach(item => {
-        if ((item as any).spacer) {
+        if (item.spacer) {
             output += `<div class="col-span-2 h-2"></div>`;
         } else {
             const label = item.label ? `${item.label}:` : '';

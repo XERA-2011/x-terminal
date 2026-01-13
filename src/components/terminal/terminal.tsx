@@ -31,12 +31,14 @@ export const Terminal: React.FC = () => {
 
     // Expose executeCommand to window for clickable commands in HTML output
     useEffect(() => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (window as any).executeCommand = async (cmd: string) => {
             setCommand(cmd);
             await shell(cmd, setHistory, clearHistory, setCommand);
         };
         return () => {
             // cleanup if needed
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             delete (window as any).executeCommand;
         };
     }, [setHistory, clearHistory, setCommand]);

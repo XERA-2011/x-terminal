@@ -2,7 +2,7 @@
 
 import { getProjects, getQuote, getReadme, getWeather } from "../api";
 
-export const projects = async (args: string[]): Promise<string> => {
+export const projects = async (): Promise<string> => {
     try {
         const projectList = await getProjects();
         return projectList
@@ -11,21 +11,21 @@ export const projects = async (args: string[]): Promise<string> => {
                     `${repo.name} - <a class="text-terminal-blue underline" href="${repo.html_url}" target="_blank">${repo.html_url}</a>`
             )
             .join("\n");
-    } catch (error) {
+    } catch {
         return "Error fetching projects. Please try again later.";
     }
 };
 
-export const quote = async (args: string[]): Promise<string> => {
+export const quote = async (): Promise<string> => {
     const data = await getQuote();
     return data.quote;
 };
 
-export const readme = async (args: string[]): Promise<string> => {
+export const readme = async (): Promise<string> => {
     try {
         const readmeContent = await getReadme();
         return `GitHub README:\n\n${readmeContent}`;
-    } catch (error) {
+    } catch {
         return "Error fetching README. Please try again later.";
     }
 };

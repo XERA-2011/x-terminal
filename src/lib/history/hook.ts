@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import type { History } from "./interface";
 
 export const useHistory = (defaultValue: History[] = []) => {
@@ -10,7 +10,9 @@ export const useHistory = (defaultValue: History[] = []) => {
 
     // Use ref to avoid dependency on command in setHistory
     const commandRef = useRef(command);
-    commandRef.current = command;
+    useEffect(() => {
+        commandRef.current = command;
+    }, [command]);
 
     const setHistory = useCallback((output: string) => {
         setHistoryState((prev) => [

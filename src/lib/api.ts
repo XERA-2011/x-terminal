@@ -33,7 +33,7 @@ export const getQuote = async () => {
         return {
             quote: `"${data.content}" — ${data.author}`,
         };
-    } catch (error) {
+    } catch {
         return {
             quote: '"The only way to do great work is to love what you do." — Steve Jobs',
         };
