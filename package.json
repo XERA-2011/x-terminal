@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack -p 2011",
     "build": "next build",
+    "build:aliyun": "next build",
     "start": "next start",
     "lint": "eslint"
   },

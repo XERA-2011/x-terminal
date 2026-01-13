@@ -8,7 +8,7 @@ export const terminalConfig = {
 
     // Terminal PS1 prompt settings
     ps1: {
-        username: "visitor",
+        username: "you",
         hostname: "x-terminal",
     },
 

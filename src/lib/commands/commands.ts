@@ -6,7 +6,7 @@ import { projects } from "./api-commands";
 // List of all available commands
 const CATEGORIES = {
     "Info & Contact": ["about", "email", "github", "projects", "readme", "whoami"],
-    "System & Cmds": ["banner", "cd", "date", "help", "ls"],
+    "System & Cmds": ["banner", "cd", "clear", "date", "help", "ls"],
     "Web & Tools": ["bing", "google", "quote", "reddit", "weather"],
     "Editors & Fun": ["echo", "emacs", "nvim", "vi", "vim"]
 } as const;
@@ -129,12 +129,12 @@ export const banner = (args?: string[]): string => {
     ];
 
     const infoData = [
-        { label: "System", value: `<a class="text-terminal-blue hover:underline" href="https://github.com/xera-2011/x-terminal" target="_blank">X-TERMINAL</a>` },
+        { label: "Github", value: `<a class="text-terminal-blue hover:underline" href="${terminalConfig.repo}" target="_blank">x-terminal</a>` },
         { label: "Sites", value: `<a class="text-terminal-blue hover:underline" href="https://xera-2011.github.io" target="_blank">XERA-2011</a> <a class="text-terminal-blue hover:underline" href="https://x-texas-holdem.pages.dev" target="_blank">x-texas-holdem</a>` },
-        { label: "Social", value: `<a class="text-terminal-blue hover:underline" href="https://x.com/XERA_2011" target="_blank">X (Twitter)</a>` },
+        { label: "Social", value: `<a class="text-terminal-blue hover:underline" href="https://x.com/XERA_2011" target="_blank">𝕏 (Twitter)</a>` },
     ];
 
-    let output = `<div class="mb-2 flex flex-row gap-4 items-start text-left">`;
+    let output = `<div class="mt-2 mb-1 flex flex-row gap-4 items-start text-left">`;
 
     // Left: Art
     // Scaling Y to fix the aspect ratio, using margin-bottom to compensate for layout overlap (since transform doesn't    // Left: Art

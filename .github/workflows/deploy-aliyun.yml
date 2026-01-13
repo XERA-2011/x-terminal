@@ -17,8 +17,6 @@ env:
   CI: true
   TZ: Asia/Shanghai
   ALIYUN_HOST: ${{ secrets.ALIYUN_HOST }}
-  # Define base path here for consistency
-  NEXT_PUBLIC_BASE_PATH: /x-terminal
 
 jobs:
   deploy:
@@ -42,7 +40,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build for Aliyun
-        run: pnpm run build
+        run: pnpm run build:aliyun
 
       - name: Check build output
         run: |
@@ -59,9 +57,9 @@ jobs:
           REMOTE_HOST: ${{ secrets.ALIYUN_HOST }}
           REMOTE_USER: ${{ secrets.ALIYUN_USER }}
           SOURCE: 'out/'
-          # Target matches basePath: /x-terminal -> /opt/xera/html/x-terminal
+          # Target matches basePath: /terminal -> /opt/xera/html/terminal
           # Upload to a temporary directory first to prevent downtime/corruption if connection drops
-          TARGET: '/opt/xera/html/x-terminal-temp/' 
+          TARGET: '/opt/xera/html/terminal-temp/' 
           ARGS: '-avz --delete'
 
       - name: Finalize Deployment & Reload Nginx
@@ -72,8 +70,8 @@ jobs:
           username: ${{ secrets.ALIYUN_USER }}
           key: ${{ secrets.ALIYUN_SSH_KEY }}
           script: |
-            TARGET="/opt/xera/html/x-terminal"
-            TEMP="/opt/xera/html/x-terminal-temp"
+            TARGET="/opt/xera/html/terminal"
+            TEMP="/opt/xera/html/terminal-temp"
             
             # Verify upload
             if [ -d "$TEMP" ] && [ "$(ls -A $TEMP)" ]; then
@@ -89,6 +87,7 @@ jobs:
               echo "Swap successful."
               
               # Reload Nginx to ensure caches are cleared if necessary
+              # Assuming docker container name is xera-nginx as per reference
               docker exec xera-nginx nginx -s reload || true
             else
               echo "Error: Temp directory is empty or missing. Deployment aborted."
