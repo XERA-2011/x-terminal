@@ -54,7 +54,7 @@ export const email = async (): Promise<string> => {
 };
 
 export const github = async (): Promise<string> => {
-    window.open(`https://github.com/${terminalConfig.social.github}`);
+    window.open(`https://github.com/${terminalConfig.github}`);
     return "Opening github...";
 };
 
@@ -135,9 +135,9 @@ export const banner = (): string => {
     }
 
     const infoData: InfoItem[] = [
-        { label: "Author", value: `<a class="hover:underline" href="${terminalConfig.github}" target="_blank">XERA-2011</a>` },
+        { label: "Author", value: `<a class="hover:underline" href="https://github.com/${terminalConfig.github}" target="_blank">XERA-2011</a>` },
         { label: "Sites", value: `<a class="hover:underline" href="https://xera-2011.github.io" target="_blank">blog</a> <a class="hover:underline" href="https://x-texas-holdem.pages.dev" target="_blank">x-texas-holdem</a>` },
-        { label: "Social", value: `<a class="hover:underline" href="https://x.com/XERA_2011" target="_blank">𝕏 (Twitter)</a>` },
+        { label: "Social", value: `<a class="hover:underline" href="${terminalConfig.social.x}" target="_blank">𝕏 (Twitter)</a>` },
     ];
 
     let output = `<div class="mt-2 mb-1 flex flex-row gap-4 items-start text-left max-w-full overflow-hidden">`;

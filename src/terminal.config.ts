@@ -6,6 +6,7 @@ export const terminalConfig = {
     // Personal information
     name: "XERA-2011",
     email: "1138006034@qq.com",
+    github: "XERA-2011",
 
     // Terminal PS1 prompt settings
     ps1: {
@@ -15,11 +16,10 @@ export const terminalConfig = {
 
     // Social links
     social: {
-        github: "XERA-2011",
+        x: "https://x.com/XERA_2011",
     },
 
     repo: "https://github.com/XERA-2011/x-terminal",
-    github: "https://github.com/XERA-2011",
 
     // Site title
     title: "x-terminal",
