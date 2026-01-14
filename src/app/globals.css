@@ -27,10 +27,10 @@
   --color-theme-white-10: rgba(255, 255, 255, 0.1);
 
   /* Terminal colors - Classic Dark Theme */
-  --color-terminal-background: #000000;
-  --color-terminal-foreground: #FFFFFF;
-  --color-terminal-yellow: #F1C40F;
-  --color-terminal-green: #2ECC71;
+  --color-terminal-background: #282828;
+  --color-terminal-foreground: #cccccc;
+  --color-terminal-purple: #C586C0;
+  --color-terminal-cyan: #4FC1FF;
   --color-terminal-gray: #808080;
   --color-terminal-blue: #3498DB;
   --color-terminal-red: #E74C3C;
@@ -42,9 +42,20 @@
   }
 
   body {
-    background-color: var(--color-terminal-background);
+    background-color: #181818;
     color: var(--color-terminal-foreground);
     line-height: inherit;
+  }
+
+  a {
+    color: #CE9178;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  a:hover {
+    opacity: 0.7;
   }
 }
 

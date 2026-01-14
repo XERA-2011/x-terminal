@@ -108,7 +108,7 @@ export const Input: React.FC<InputProps> = ({
                 id="prompt"
                 type="text"
                 className={`bg-transparent focus:outline-none flex-grow font-mono ${commandExists(command) || command === ""
-                    ? "text-terminal-green"
+                    ? "text-terminal-cyan"
                     : "text-terminal-red"
                     }`}
                 value={command}

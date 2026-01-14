@@ -5,11 +5,11 @@ import { terminalConfig } from "@/terminal.config";
 export const Ps1 = () => {
     return (
         <div className="flex-shrink-0">
-            <span className="text-terminal-yellow">
+            <span className="text-terminal-purple">
                 {terminalConfig.ps1.username}
             </span>
             <span className="text-terminal-gray">@</span>
-            <span className="text-terminal-green">
+            <span className="text-terminal-cyan">
                 {terminalConfig.ps1.hostname}
             </span>
             <span className="text-terminal-gray">:$ ~ </span>

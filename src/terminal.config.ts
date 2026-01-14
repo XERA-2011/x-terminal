@@ -1,6 +1,7 @@
 // Terminal configuration
 // Customize this file with your personal information
 
+
 export const terminalConfig = {
     // Personal information
     name: "XERA-2011",
@@ -18,6 +19,7 @@ export const terminalConfig = {
     },
 
     repo: "https://github.com/XERA-2011/x-terminal",
+    github: "https://github.com/XERA-2011",
 
     // Site title
     title: "x-terminal",

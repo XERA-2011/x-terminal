@@ -18,14 +18,14 @@ export const help = async (): Promise<string> => {
     let c = "";
 
     for (const [category, commands] of Object.entries(CATEGORIES)) {
-        c += `${category}:\n`;
+        c += `<span class="text-terminal-purple">${category}:</span>\n`;
         for (let i = 0; i < commands.length; i++) {
             if (i % 3 === 0 && i !== 0) {
                 c += "\n";
             }
             const cmd = commands[i];
             const spaces = " ".repeat(12 - cmd.length);
-            c += `  <span class="cursor-pointer hover:underline" onclick="window.executeCommand('${cmd}')">${cmd}</span>${spaces}`;
+            c += `  <span class="text-terminal-cyan cursor-pointer hover:underline" onclick="window.executeCommand('${cmd}')">${cmd}</span>${spaces}`;
         }
         c += "\n\n";
     }
@@ -135,21 +135,20 @@ export const banner = (): string => {
     }
 
     const infoData: InfoItem[] = [
-        { label: "Github", value: `<a class="text-terminal-blue hover:underline" href="${terminalConfig.repo}" target="_blank">x-terminal</a>` },
-        { label: "Sites", value: `<a class="text-terminal-blue hover:underline" href="https://xera-2011.github.io" target="_blank">XERA-2011</a> <a class="text-terminal-blue hover:underline" href="https://x-texas-holdem.pages.dev" target="_blank">x-texas-holdem</a>` },
-        { label: "Social", value: `<a class="text-terminal-blue hover:underline" href="https://x.com/XERA_2011" target="_blank">𝕏 (Twitter)</a>` },
+        { label: "Author", value: `<a class="hover:underline" href="${terminalConfig.github}" target="_blank">XERA-2011</a>` },
+        { label: "Sites", value: `<a class="hover:underline" href="https://xera-2011.github.io" target="_blank">blog</a> <a class="hover:underline" href="https://x-texas-holdem.pages.dev" target="_blank">x-texas-holdem</a>` },
+        { label: "Social", value: `<a class="hover:underline" href="https://x.com/XERA_2011" target="_blank">𝕏 (Twitter)</a>` },
     ];
 
-    let output = `<div class="mt-2 mb-1 flex flex-row gap-4 items-start text-left">`;
+    let output = `<div class="mt-2 mb-1 flex flex-row gap-4 items-start text-left max-w-full overflow-hidden">`;
 
     // Left: Art
-    // Scaling Y to fix the aspect ratio, using margin-bottom to compensate for layout overlap (since transform doesn't    // Left: Art
-    output += `<div class="ascii-art font-mono whitespace-pre text-terminal-foreground font-bold select-none text-[10px] sm:text-[16px]" style="line-height: 1.0;">`;
+    output += `<div class="ascii-art font-mono whitespace-pre text-terminal-foreground font-bold select-none text-[10px] sm:text-[16px] shrink-0" style="line-height: 1.0;">`;
     output += art.join("\n");
     output += `</div>`;
 
     // Right: Info (Grid Layout)
-    output += `<div class="grid grid-cols-[auto_1fr] gap-x-4 text-left w-full sm:w-auto">`;
+    output += `<div class="grid grid-cols-[auto_1fr] gap-x-4 text-left min-w-0 overflow-hidden">`;
     infoData.forEach(item => {
         if (item.spacer) {
             output += `<div class="col-span-2 h-2"></div>`;
@@ -159,7 +158,7 @@ export const banner = (): string => {
                 output += `<div>-------</div><div>----------</div>`;
             } else {
                 output += `<div class="font-bold">${label}</div>`;
-                output += `<div class="break-words">${item.value}</div>`;
+                output += `<div class="truncate">${item.value}</div>`;
             }
         }
     });
@@ -167,7 +166,7 @@ export const banner = (): string => {
 
     output += `</div>`;
 
-    output += `Type or click '<span class="cursor-pointer hover:underline" onclick="window.executeCommand('help')">help</span>' to see the list of available commands.`;
+    output += `Type or click '<span class="text-terminal-cyan cursor-pointer hover:underline" onclick="window.executeCommand('help')">help</span>' to see the list of available commands.`;
 
     return output;
 };

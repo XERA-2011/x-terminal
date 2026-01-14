@@ -61,7 +61,7 @@ export const Terminal: React.FC = () => {
 
     return (
         <div
-            className="terminal-container overflow-hidden h-full cursor-text"
+            className="terminal-container overflow-hidden h-full cursor-text border-1 border-[#4F4F4F] rounded-3xl p-4"
             onClick={handleContainerClick}
         >
             <div ref={containerRef} className="overflow-y-auto h-full">

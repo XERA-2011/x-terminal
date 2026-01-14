@@ -8,7 +8,7 @@ export const projects = async (): Promise<string> => {
         return projectList
             .map(
                 (repo: { name: string; html_url: string }) =>
-                    `${repo.name} - <a class="text-terminal-blue underline" href="${repo.html_url}" target="_blank">${repo.html_url}</a>`
+                    `${repo.name} - <a href="${repo.html_url}" target="_blank">${repo.html_url}</a>`
             )
             .join("\n");
     } catch {
