@@ -138,13 +138,13 @@ export const banner = (): string => {
 
     const infoData: InfoItem[] = [
         { label: "Author", value: `<a class="hover:underline" href="https://github.com/${terminalConfig.github}" target="_blank">XERA-2011</a>` },
-        { label: "Sites", value: `<a class="hover:underline" href="https://xera-2011.github.io" target="_blank">blog</a> <a class="hover:underline" href="https://x-texas-holdem.pages.dev" target="_blank">x-texas-holdem</a>` },
-        { label: "Social", value: `<a class="hover:underline" href="${terminalConfig.social.x}" target="_blank">𝕏 (Twitter)</a>` },
+        { label: "Sites", value: terminalConfig.sites.map((site) => `<a class="hover:underline" href="${site.url}" target="_blank">${site.name}</a>`).join(" ") },
+        { label: "Social", value: terminalConfig.social.map((social) => `<a class="hover:underline" href="${social.url}" target="_blank">${social.name}</a>`).join(" ") },
         ...(process.env.NEXT_PUBLIC_DEPLOY_TARGET === "aliyun" ? [{ label: "Aliyun", value: terminalConfig.aliyun.map((url) => `<a class="hover:underline" href="${url}" target="_blank">${url}</a>`).join(" ") }] : []),
-        { label: "About", value: `<span class="text-terminal-orange cursor-pointer hover:underline" onclick="window.executeCommand('about')">me</span>` },
+        { label: "About", value: `<span  class="text-terminal-orange cursor-pointer hover:underline" onclick="window.executeCommand('about')">me</span>` },
     ];
 
-    let output = `<div class="mt-2 mb-1 flex flex-row gap-4 items-start text-left max-w-full overflow-hidden">`;
+    let output = `<div class="mt-2 mb-1 flex flex-row gap-4 items-start text-left max-w-full">`;
 
     // Left: Art
     output += `<div class="ascii-art font-mono whitespace-pre text-terminal-foreground font-bold select-none text-[10px] sm:text-[16px] shrink-0" style="line-height: 1.0;">`;
@@ -152,7 +152,7 @@ export const banner = (): string => {
     output += `</div>`;
 
     // Right: Info (Grid Layout)
-    output += `<div class="grid grid-cols-[auto_1fr] gap-x-4 text-left min-w-0 overflow-hidden">`;
+    output += `<div class="grid grid-cols-[auto_1fr] gap-x-4 text-left">`;
     infoData.forEach(item => {
         if (item.spacer) {
             output += `<div class="col-span-2 h-2"></div>`;
@@ -162,7 +162,7 @@ export const banner = (): string => {
                 output += `<div>-------</div><div>----------</div>`;
             } else {
                 output += `<div class="font-bold">${label}</div>`;
-                output += `<div class="truncate">${item.value}</div>`;
+                output += `<div class="break-words">${item.value}</div>`;
             }
         }
     });

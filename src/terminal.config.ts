@@ -8,7 +8,15 @@ export const terminalConfig = {
     email: "1138006034@qq.com",
     github: "XERA-2011",
     aliyun: ['/x-terminal/', '/texas-holdem/', '/jupyter/lab/'],
-
+    sites: [
+        {
+            name: "blog",
+            url: "https://xera-2011.github.io"
+        }, {
+            name: "x-texas-holdem",
+            url: "https://x-texas-holdem.pages.dev"
+        }
+    ],
     // Terminal PS1 prompt settings
     ps1: {
         username: "you",
@@ -16,9 +24,16 @@ export const terminalConfig = {
     },
 
     // Social links
-    social: {
-        x: "https://x.com/XERA_2011",
-    },
+    social: [
+        {
+            name: "𝕏 (Twitter)",
+            url: "https://x.com/XERA_2011"
+        },
+        // {
+        //     name: "GitHub",
+        //     url: "https://github.com/XERA-2011"
+        // }
+    ],
 
     repo: "https://github.com/XERA-2011/x-terminal",
 
