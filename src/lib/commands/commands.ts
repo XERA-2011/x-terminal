@@ -42,8 +42,14 @@ export const help = async (): Promise<string> => {
 
 // About
 export const about = async (): Promise<string> => {
-    return `Hi, I am ${terminalConfig.name}. 
-Welcome to my website!`;
+    return `<span class="text-terminal-gray">
+Hi, I am ${terminalConfig.name}
+Full-Stack Engineer
+Email: ${terminalConfig.email}
+
+Welcome to my terminal website!
+
+</span>`;
 };
 
 
@@ -58,15 +64,11 @@ export const github = async (): Promise<string> => {
     return "Opening github...";
 };
 
-
-
 // Search
 export const google = async (args: string[]): Promise<string> => {
     window.open(`https://google.com/search?q=${args.join(" ")}`);
     return `Searching google for ${args.join(" ")}...`;
 };
-
-
 
 export const bing = async (args: string[]): Promise<string> => {
     window.open(`https://bing.com/search?q=${args.join(" ")}`);
@@ -138,6 +140,7 @@ export const banner = (): string => {
         { label: "Author", value: `<a class="hover:underline" href="https://github.com/${terminalConfig.github}" target="_blank">XERA-2011</a>` },
         { label: "Sites", value: `<a class="hover:underline" href="https://xera-2011.github.io" target="_blank">blog</a> <a class="hover:underline" href="https://x-texas-holdem.pages.dev" target="_blank">x-texas-holdem</a>` },
         { label: "Social", value: `<a class="hover:underline" href="${terminalConfig.social.x}" target="_blank">𝕏 (Twitter)</a>` },
+        { label: "About", value: `<span class="text-terminal-orange cursor-pointer hover:underline" onclick="window.executeCommand('about')">me</span>` },
     ];
 
     let output = `<div class="mt-2 mb-1 flex flex-row gap-4 items-start text-left max-w-full overflow-hidden">`;

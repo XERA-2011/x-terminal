@@ -34,6 +34,7 @@
   --color-terminal-gray: #808080;
   --color-terminal-blue: #3498DB;
   --color-terminal-red: #E74C3C;
+  --color-terminal-orange: #CE9178;
 }
 
 @layer base {
@@ -48,7 +49,7 @@
   }
 
   a {
-    color: #CE9178;
+    color: var(--color-terminal-orange);
     text-decoration: underline;
     text-underline-offset: 3px;
     transition: opacity 0.2s ease-in-out;
@@ -115,4 +116,9 @@ body {
 
 .text-terminal-foreground {
   color: var(--color-terminal-foreground) !important;
+}
+
+/* Manual utility class for dynamic HTML strings (Tailwind can't detect class names in template literals) */
+.text-terminal-orange {
+  color: var(--color-terminal-orange);
 }
