@@ -9,9 +9,14 @@ export const Ps1 = () => {
                 {terminalConfig.ps1.username}
             </span>
             <span className="text-terminal-gray">@</span>
-            <span className="text-terminal-cyan">
+            <a
+                href={terminalConfig.repo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-terminal-cyan no-underline hover:underline"
+            >
                 {terminalConfig.ps1.hostname}
-            </span>
+            </a>
             <span className="text-terminal-gray">:$ ~ </span>
         </div>
     );
