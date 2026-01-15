@@ -7,6 +7,7 @@ export const terminalConfig = {
     name: "XERA-2011",
     email: "1138006034@qq.com",
     github: "XERA-2011",
+    aliyun: ['/x-terminal/', '/texas-holdem/', '/jupyter/lab/'],
 
     // Terminal PS1 prompt settings
     ps1: {

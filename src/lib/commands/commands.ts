@@ -140,6 +140,7 @@ export const banner = (): string => {
         { label: "Author", value: `<a class="hover:underline" href="https://github.com/${terminalConfig.github}" target="_blank">XERA-2011</a>` },
         { label: "Sites", value: `<a class="hover:underline" href="https://xera-2011.github.io" target="_blank">blog</a> <a class="hover:underline" href="https://x-texas-holdem.pages.dev" target="_blank">x-texas-holdem</a>` },
         { label: "Social", value: `<a class="hover:underline" href="${terminalConfig.social.x}" target="_blank">𝕏 (Twitter)</a>` },
+        ...(process.env.NEXT_PUBLIC_DEPLOY_TARGET === "aliyun" ? [{ label: "Aliyun", value: terminalConfig.aliyun.map((url) => `<a class="hover:underline" href="${url}" target="_blank">${url}</a>`).join(" ") }] : []),
         { label: "About", value: `<span class="text-terminal-orange cursor-pointer hover:underline" onclick="window.executeCommand('about')">me</span>` },
     ];
 
