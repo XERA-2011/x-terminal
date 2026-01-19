@@ -7,7 +7,7 @@ export const terminalConfig = {
     name: "XERA-2011",
     email: "1138006034@qq.com",
     github: "XERA-2011",
-    aliyun: ['/texas-holdem/', '/jupyter/lab/'],
+    aliyun: ['/texas-holdem/', '/analytics/', '/jupyter/lab/'],
     sites: [
         {
             name: "blog",
