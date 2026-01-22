@@ -7,6 +7,7 @@ Terminal Web UI
 |----------|-----|
 | Cloudflare Pages | [x-terminal.pages.dev](https://x-terminal.pages.dev) |
 | Vercel | [x-terminal.vercel.app](https://x-terminal.vercel.app) |
+| Netlify | [x-terminal.netlify.app](https://x-terminal.netlify.app) |
 | GitHub Pages | [xera-2011.github.io/x-terminal](https://xera-2011.github.io/x-terminal) |
 
 ## 🚀 Getting Started
