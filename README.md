@@ -18,6 +18,9 @@ pnpm install
 
 # Run development server
 pnpm dev
+
+# Run development server on Aliyun
+pnpm dev:aliyun
 ```
 
 Open [http://localhost:2011](http://localhost:2011) with your browser to see the result.
@@ -26,6 +29,8 @@ Open [http://localhost:2011](http://localhost:2011) with your browser to see the
 
 ```bash
 pnpm build
+
+pnpm build:aliyun
 ```
 
 Static output is generated in the `out/` directory.

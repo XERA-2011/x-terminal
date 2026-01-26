@@ -9,9 +9,11 @@ export const viewport: Viewport = {
   userScalable: false,
 };
 
+import { terminalConfig, isAliyun } from "@/terminal.config";
+
 export const metadata: Metadata = {
-  title: "x-terminal",
-  description: "Terminal Web UI",
+  title: isAliyun ? "木彡的终端" : "x-terminal",
+  description: isAliyun ? "终端网页UI" : "Terminal Web UI",
   keywords: [
     'terminal',
     'ui',
@@ -19,8 +21,8 @@ export const metadata: Metadata = {
     'react',
     'nextjs'
   ],
-  authors: [{ name: 'XERA' }],
-  creator: 'XERA',
+  authors: [{ name: terminalConfig.name }],
+  creator: terminalConfig.name,
   icons: {
     icon: '/favicon.ico',
     apple: '/apple-touch-icon.png',

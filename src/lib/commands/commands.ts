@@ -1,11 +1,11 @@
 // List of commands that do not require API calls
 
-import { terminalConfig } from "@/terminal.config";
+import { terminalConfig, isAliyun } from "@/terminal.config";
 import { projects } from "./api-commands";
 
 // List of all available commands
 const CATEGORIES = {
-    "Info & Contact": ["about", "email", "github", "projects", "readme", "whoami"],
+    "Info & Contact": ["about", "email", "gitee", "github", "projects", "readme", "whoami"],
     "System & Cmds": ["banner", "cd", "clear", "date", "help", "ls"],
     "Web & Tools": ["bing", "google", "quote", "reddit", "weather"],
     "Editors & Fun": ["echo", "emacs", "nvim", "vi", "vim"]
@@ -45,6 +45,7 @@ export const about = async (): Promise<string> => {
     return `<span class="text-terminal-gray">
 Hi, I am ${terminalConfig.name}
 Full-Stack Engineer
+WeChat: XERA_2011
 Email: ${terminalConfig.email}
 
 Welcome to my terminal website!
@@ -62,6 +63,11 @@ export const email = async (): Promise<string> => {
 export const github = async (): Promise<string> => {
     window.open(`https://github.com/${terminalConfig.github}`);
     return "Opening github...";
+};
+
+export const gitee = async (): Promise<string> => {
+    window.open(`https://gitee.com/${terminalConfig.gitee}`);
+    return "Opening gitee...";
 };
 
 // Search
@@ -137,10 +143,9 @@ export const banner = (): string => {
     }
 
     const infoData: InfoItem[] = [
-        { label: "Author", value: `<a class="hover:underline" href="https://github.com/${terminalConfig.github}" target="_blank">XERA-2011</a>` },
-        { label: "Sites", value: terminalConfig.sites.map((site) => `<a class="hover:underline" href="${site.url}" target="_blank">${site.name}</a>`).join(" ") },
-        { label: "Social", value: terminalConfig.social.map((social) => `<a class="hover:underline" href="${social.url}" target="_blank">${social.name}</a>`).join(" ") },
-        ...(process.env.NEXT_PUBLIC_DEPLOY_TARGET === "aliyun" ? [{ label: "Aliyun", value: terminalConfig.aliyun.map((url) => `<a class="hover:underline" href="${url}" target="_blank">${url}</a>`).join(" ") }] : []),
+        { label: "Author", value: `<a class="hover:underline" href="${isAliyun ? `https://gitee.com/${terminalConfig.gitee}` : `https://github.com/${terminalConfig.github}`}" target="_blank">XERA-2011</a>` },
+        ...(!isAliyun ? [{ label: "Sites", value: terminalConfig.sites.map((site) => `<a class="hover:underline" href="${site.url}" target="_blank">${site.name}</a>`).join(" ") }] : []),
+        ...(!isAliyun ? [{ label: "Social", value: terminalConfig.social.map((social) => `<a class="hover:underline" href="${social.url}" target="_blank">${social.name}</a>`).join(" ") }] : []),
         { label: "About", value: `<span  class="text-terminal-orange cursor-pointer hover:underline" onclick="window.executeCommand('about')">me</span>` },
     ];
 
