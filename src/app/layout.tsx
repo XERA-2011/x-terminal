@@ -12,7 +12,7 @@ export const viewport: Viewport = {
 import { terminalConfig, isAliyun } from "@/terminal.config";
 
 export const metadata: Metadata = {
-  title: isAliyun ? "木彡终端" : "x-terminal",
+  title: isAliyun ? "终端网页" : "x-terminal",
   description: isAliyun ? "终端网页UI" : "Terminal Web UI",
   keywords: [
     'terminal',
