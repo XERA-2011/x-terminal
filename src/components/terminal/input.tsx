@@ -14,7 +14,7 @@ interface InputProps {
     history: History[];
     lastCommandIndex: number;
     setCommand: React.Dispatch<React.SetStateAction<string>>;
-    setHistory: (value: string) => void;
+    setHistory: (value: string | React.ReactNode) => void;
     setLastCommandIndex: React.Dispatch<React.SetStateAction<number>>;
     clearHistory: () => void;
 }
