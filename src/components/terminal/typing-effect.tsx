@@ -29,9 +29,11 @@ export const TypingEffect: React.FC<TypingEffectProps> = ({
         }
 
         if (subIndex === 0 && reverse) {
-            setReverse(false);
-            setLineIndex((prev) => (prev + 1) % lines.length);
-            return;
+            const timeout = setTimeout(() => {
+                setReverse(false);
+                setLineIndex((prev) => (prev + 1) % lines.length);
+            }, 0);
+            return () => clearTimeout(timeout);
         }
 
         const timeout = setTimeout(() => {
