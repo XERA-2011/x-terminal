@@ -1,7 +1,7 @@
 import { COMMANDS } from "./commands";
 
 // Type for command functions
-type CommandFunction = (args: string[]) => Promise<string> | string;
+type CommandFunction = (args: string[]) => Promise<string | React.ReactNode> | string | React.ReactNode;
 
 // Dynamic import of commands
 const getCommandFunction = async (commandName: string): Promise<CommandFunction | null> => {
@@ -14,7 +14,7 @@ const getCommandFunction = async (commandName: string): Promise<CommandFunction 
 
 export const shell = async (
     command: string,
-    setHistory: (value: string) => void,
+    setHistory: (value: string | React.ReactNode) => void,
     clearHistory: () => void,
     setCommand: React.Dispatch<React.SetStateAction<string>>
 ) => {

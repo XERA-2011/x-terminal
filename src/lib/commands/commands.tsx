@@ -2,16 +2,35 @@
 
 import { terminalConfig, isAliyun } from "@/terminal.config";
 import { projects } from "./api-commands";
+import { TypingEffect } from "@/components/terminal/typing-effect";
+import { MOVIE_QUOTES } from "@/lib/data/quotes";
+import React from 'react';
 
 // List of all available commands
 const CATEGORIES = {
     "Info & Contact": ["about", "email", "gitee", "github", "projects", "readme", "whoami"],
     "System & Cmds": ["banner", "cd", "clear", "date", "help", "ls"],
-    "Web & Tools": ["bing", "google", "quote", "reddit", "weather"],
+    "Web & Tools": ["bing", "google", "quote", "reddit", "weather", ...(isAliyun ? ["aliyun"] : [])],
     "Editors & Fun": ["echo", "emacs", "nvim", "vi", "vim"]
 } as const;
 
 export const COMMANDS = Object.values(CATEGORIES).flat().sort();
+
+// Ailyun Projects
+export const aliyun = async (): Promise<string> => {
+    if (!isAliyun) return "Command not available.";
+    const projects = [
+        { name: "x-analytics", url: "/analytics/" },
+        { name: "x-texas-holdem", url: "/texas-holdem/" },
+    ];
+
+    return projects
+        .map(
+            (repo) =>
+                `${repo.name} - <a href="${repo.url}" target="_blank">${repo.url}</a>`
+        )
+        .join("\n");
+};
 
 // Help
 export const help = async (): Promise<string> => {
@@ -126,7 +145,12 @@ export const emacs = async (): Promise<string> => {
 
 
 // Banner
-export const banner = (): string => {
+const randomQuote = MOVIE_QUOTES[Math.floor(Math.random() * MOVIE_QUOTES.length)];
+const sessionQuoteLines = [randomQuote.english, randomQuote.chinese];
+
+// Banner
+export const banner = (): string | React.ReactNode => {
+    // ... art definition
     const art = [
         "██╗  ██╗",
         "╚██╗██╔╝",
@@ -149,33 +173,38 @@ export const banner = (): string => {
         { label: "About", value: `<span  class="text-terminal-orange cursor-pointer hover:underline" onclick="window.executeCommand('about')">me</span>` },
     ];
 
-    let output = `<div class="mt-2 mb-1 flex flex-row gap-4 items-start text-left max-w-full">`;
+    // JSX Result
+    const helpText = `Type or click '<span class="text-terminal-cyan cursor-pointer hover:underline" onclick="window.executeCommand('help')">help</span>' to see the list of available commands.`;
 
-    // Left: Art
-    output += `<div class="ascii-art font-mono whitespace-pre text-terminal-foreground font-bold select-none text-[10px] sm:text-[16px] shrink-0" style="line-height: 1.0;">`;
-    output += art.join("\n");
-    output += `</div>`;
-
-    // Right: Info (Grid Layout)
-    output += `<div class="grid grid-cols-[auto_1fr] gap-x-4 text-left">`;
-    infoData.forEach(item => {
-        if (item.spacer) {
-            output += `<div class="col-span-2 h-2"></div>`;
-        } else {
-            const label = item.label ? `${item.label}:` : '';
-            if (item.label === '-------') {
-                output += `<div>-------</div><div>----------</div>`;
-            } else {
-                output += `<div class="font-bold">${label}</div>`;
-                output += `<div class="break-words">${item.value}</div>`;
-            }
-        }
-    });
-    output += `</div>`;
-
-    output += `</div>`;
-
-    output += `Type or click '<span class="text-terminal-cyan cursor-pointer hover:underline" onclick="window.executeCommand('help')">help</span>' to see the list of available commands.`;
-
-    return output;
+    return (
+        <div className="flex flex-col gap-2">
+            <div className="flex flex-row gap-4 items-start text-left max-w-full mt-2 mb-1">
+                <div className="ascii-art font-mono whitespace-pre text-terminal-foreground font-bold select-none text-[10px] sm:text-[16px] shrink-0" style={{ lineHeight: "1.0" }}>
+                    {art.join("\n")}
+                </div>
+                <div className="grid grid-cols-[auto_1fr] gap-x-4 text-left">
+                    {infoData.map((item, i) => (
+                        <React.Fragment key={i}>
+                            {item.spacer ? (
+                                <div className="col-span-2 h-2"></div>
+                            ) : item.label === '-------' ? (
+                                <><div>-------</div><div>----------</div></>
+                            ) : (
+                                <>
+                                    <div className="font-bold">{item.label ? `${item.label}:` : ''}</div>
+                                    <div className="break-words" dangerouslySetInnerHTML={{ __html: item.value }}></div>
+                                </>
+                            )}
+                        </React.Fragment>
+                    ))}
+                    {/* Typing Effect Row */}
+                    <div className="font-bold">Quote:</div>
+                    <div>
+                        <TypingEffect lines={sessionQuoteLines} speed={80} wait={5000} />
+                    </div>
+                </div>
+            </div>
+            <div dangerouslySetInnerHTML={{ __html: helpText }} />
+        </div>
+    );
 };

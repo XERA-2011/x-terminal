@@ -14,7 +14,7 @@ export const useHistory = (defaultValue: History[] = []) => {
         commandRef.current = command;
     }, [command]);
 
-    const setHistory = useCallback((output: string) => {
+    const setHistory = useCallback((output: string | React.ReactNode) => {
         setHistoryState((prev) => [
             ...prev,
             {

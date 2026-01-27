@@ -20,8 +20,13 @@ export const History: React.FC<HistoryProps> = ({ history }) => {
                     <div
                         className="whitespace-pre-wrap break-words overflow-x-hidden w-full mb-2"
                         style={{ lineHeight: "1.5" }}
-                        dangerouslySetInnerHTML={{ __html: entry.output }}
-                    />
+                    >
+                        {typeof entry.output === 'string' ? (
+                            <div dangerouslySetInnerHTML={{ __html: entry.output }} />
+                        ) : (
+                            entry.output
+                        )}
+                    </div>
                 </div>
             ))}
         </>
