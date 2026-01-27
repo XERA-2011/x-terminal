@@ -1,6 +1,6 @@
 import { Terminal } from "@/components/terminal";
-import { GithubIcon } from "@/components/icons/github-icon";
-import { GiteeIcon } from "@/components/icons/gitee-icon";
+// import { GithubIcon } from "@/components/icons/github-icon";
+// import { GiteeIcon } from "@/components/icons/gitee-icon";
 import { terminalConfig, isAliyun } from "@/terminal.config";
 
 export default function Home() {
@@ -14,11 +14,11 @@ export default function Home() {
                 className="absolute top-7 right-7 sm:top-11 sm:right-11 text-terminal-foreground z-50"
                 aria-label={isAliyun ? "Gitee Repository" : "GitHub Repository"}
             >
-                {isAliyun ? (
+                {/* {isAliyun ? (
                     <GiteeIcon className="w-6 h-6 sm:w-8 sm:h-8" />
                 ) : (
                     <GithubIcon className="w-6 h-6 sm:w-8 sm:h-8" />
-                )}
+                )} */}
             </a>
 
             <Terminal />
