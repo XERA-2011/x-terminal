@@ -179,7 +179,7 @@ export const banner = (): string | React.ReactNode => {
     return (
         <div className="flex flex-col gap-2">
             <div className="flex flex-row gap-4 items-start text-left max-w-full mt-2 mb-1">
-                <div className="ascii-art font-mono whitespace-pre text-terminal-foreground font-bold select-none text-[10px] sm:text-[16px] shrink-0" style={{ lineHeight: "1.0" }}>
+                <div className="ascii-art whitespace-pre text-terminal-foreground font-bold select-none text-[12px] sm:text-[16px] shrink-0" style={{ lineHeight: "1.0" }}>
                     {art.join("\n")}
                 </div>
                 <div className="grid grid-cols-[auto_1fr] gap-x-4 text-left">
