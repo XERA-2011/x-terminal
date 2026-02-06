@@ -11,6 +11,9 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   allowedDevOrigins: ["localhost", "10.8.10.51"],
+  turbopack: {
+    root: __dirname,
+  },
 };
 
 export default nextConfig;
