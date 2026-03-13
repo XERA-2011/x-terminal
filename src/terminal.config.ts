@@ -27,7 +27,7 @@ export const terminalConfig = {
     social: [
         {
             name: "𝕏 (Twitter)",
-            url: "https://x.com/XERA_2011"
+            url: "https://x.com/XERA_AI"
         },
         // {
         //     name: "GitHub",
