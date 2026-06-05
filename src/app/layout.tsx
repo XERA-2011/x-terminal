@@ -36,6 +36,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN">
+      <head>
+        <link rel="preload" href="/fonts/Hack-NF.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
+      </head>
       <body>
         {children}
       </body>
