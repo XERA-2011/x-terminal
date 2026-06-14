@@ -1,4 +1,9 @@
 # x-terminal
+
+[![CI](https://github.com/XERA-2011/x-terminal/actions/workflows/ci.yml/badge.svg)](https://github.com/XERA-2011/x-terminal/actions/workflows/ci.yml)
+[![Deploy](https://github.com/XERA-2011/x-terminal/actions/workflows/deploy.yml/badge.svg)](https://github.com/XERA-2011/x-terminal/actions/workflows/deploy.yml)
+[![Sponsor](https://img.shields.io/badge/Sponsor-❤️-ff69b4.svg)](https://github.com/XERA-2011/sponsor)
+
 Terminal Web UI
 
 ## 🌐 Live Deployments
