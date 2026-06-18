@@ -40,6 +40,8 @@
 @layer base {
   * {
     @apply outline-terminal-foreground/50;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-terminal-gray) transparent;
   }
 
   body {
@@ -59,6 +61,26 @@
     opacity: 0.7;
     text-decoration: underline;
   }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-terminal-gray);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-terminal-foreground);
 }
 
 /* Mask for Game Log */

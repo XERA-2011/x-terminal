@@ -11,7 +11,7 @@ export default function Home() {
                 href={isAliyun ? terminalConfig.repo.gitee : terminalConfig.repo.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="absolute top-7 right-7 sm:top-11 sm:right-11 text-terminal-foreground z-50"
+                className="absolute top-7 right-10 sm:top-11 sm:right-14 text-terminal-foreground z-50"
                 aria-label={isAliyun ? "Gitee Repository" : "GitHub Repository"}
             >
                 {isAliyun ? (
