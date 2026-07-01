@@ -2,8 +2,13 @@ import { Terminal } from "@/components/terminal";
 import { GithubIcon } from "@/components/icons/github-icon";
 // import { GiteeIcon } from "@/components/icons/gitee-icon";
 import { terminalConfig, isAliyun } from "@/terminal.config";
+import { MOVIE_QUOTES } from "@/lib/data/quotes";
 
 export default function Home() {
+    // Select quote at build time (server component) — keeps quotes out of client JS bundle
+    const randomQuote = MOVIE_QUOTES[Math.floor(Math.random() * MOVIE_QUOTES.length)];
+    const quoteLines = [randomQuote.english, randomQuote.chinese];
+
     return (
         <div className="relative h-screen p-4 sm:p-8 font-mono bg-[#181818] text-terminal-foreground">
             {/* Repo Link */}
@@ -21,7 +26,7 @@ export default function Home() {
                 )}
             </a>
 
-            <Terminal />
+            <Terminal quoteLines={quoteLines} />
         </div>
     );
 }

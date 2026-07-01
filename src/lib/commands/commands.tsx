@@ -3,7 +3,6 @@
 import { terminalConfig, isAliyun } from "@/terminal.config";
 import { projects } from "./api-commands";
 import { TypingEffect } from "@/components/terminal/typing-effect";
-import { MOVIE_QUOTES } from "@/lib/data/quotes";
 import React from 'react';
 
 // List of all available commands
@@ -145,11 +144,7 @@ export const emacs = async (): Promise<string> => {
 
 
 // Banner
-const randomQuote = MOVIE_QUOTES[Math.floor(Math.random() * MOVIE_QUOTES.length)];
-const sessionQuoteLines = [randomQuote.english, randomQuote.chinese];
-
-// Banner
-export const banner = (): string | React.ReactNode => {
+export const banner = (quoteLines?: string[]): string | React.ReactNode => {
     // ... art definition
     const art = [
         "██╗  ██╗",
@@ -200,7 +195,7 @@ export const banner = (): string | React.ReactNode => {
                     {/* Typing Effect Row */}
                     <div className="font-bold">Quote:</div>
                     <div>
-                        <TypingEffect lines={sessionQuoteLines} speed={80} wait={5000} />
+                        {quoteLines ? <TypingEffect lines={quoteLines} speed={80} wait={5000} /> : null}
                     </div>
                 </div>
             </div>

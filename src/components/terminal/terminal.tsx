@@ -9,7 +9,11 @@ import { shell } from "@/lib/shell";
 
 // ...
 
-export const Terminal: React.FC = () => {
+interface TerminalProps {
+    quoteLines?: string[];
+}
+
+export const Terminal: React.FC<TerminalProps> = ({ quoteLines }) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -25,7 +29,7 @@ export const Terminal: React.FC = () => {
         id: 0,
         date: new Date(),
         command: "",
-        output: banner(),
+        output: banner(quoteLines),
     }]);
 
     // Expose executeCommand to window for clickable commands in HTML output
