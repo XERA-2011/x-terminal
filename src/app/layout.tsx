@@ -1,5 +1,18 @@
 import type { Metadata, Viewport } from "next";
+import localFont from 'next/font/local';
 import "./globals.css";
+
+const hackFont = localFont({
+  src: '../../public/fonts/Hack-NF.woff2',
+  display: 'swap',
+  variable: '--font-hack',
+});
+
+const hackArtFont = localFont({
+  src: '../../public/fonts/Hack-NF.woff2',
+  display: 'block',
+  variable: '--font-hack-art',
+});
 
 // 禁用页面缩放，避免移动端用户误操作
 export const viewport: Viewport = {
@@ -36,10 +49,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN">
-      <head>
-        <link rel="preload" href="/fonts/Hack-NF.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
-      </head>
-      <body>
+      <body className={`${hackFont.variable} ${hackArtFont.variable}`}>
         {children}
       </body>
     </html>
