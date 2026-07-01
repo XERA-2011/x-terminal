@@ -63,7 +63,6 @@ export const about = async (): Promise<string> => {
     return `<span class="text-terminal-gray">
 Hi, I am ${terminalConfig.name}
 Full-Stack Engineer
-WeChat: XERA_2011
 Email: ${terminalConfig.email}
 
 Welcome to my terminal website!
