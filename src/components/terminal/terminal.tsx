@@ -21,13 +21,12 @@ export const Terminal: React.FC = () => {
         setHistory,
         clearHistory,
         setLastCommandIndex,
-    } = useHistory([]);
-
-    const init = useCallback(() => setHistory(banner()), [setHistory]);
-
-    useEffect(() => {
-        init();
-    }, [init]);
+    } = useHistory([{
+        id: 0,
+        date: new Date(),
+        command: "",
+        output: banner(),
+    }]);
 
     // Expose executeCommand to window for clickable commands in HTML output
     useEffect(() => {
