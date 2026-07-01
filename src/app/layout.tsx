@@ -4,14 +4,8 @@ import "./globals.css";
 
 const hackFont = localFont({
   src: '../../public/fonts/Hack-NF.woff2',
-  display: 'swap',
-  variable: '--font-hack',
-});
-
-const hackArtFont = localFont({
-  src: '../../public/fonts/Hack-NF.woff2',
   display: 'block',
-  variable: '--font-hack-art',
+  variable: '--font-hack',
 });
 
 // 禁用页面缩放，避免移动端用户误操作
@@ -49,7 +43,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN">
-      <body className={`${hackFont.variable} ${hackArtFont.variable}`}>
+      <body className={hackFont.variable}>
         {children}
       </body>
     </html>

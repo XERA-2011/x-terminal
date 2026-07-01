@@ -88,10 +88,6 @@
   font-family: var(--font-hack), monospace;
 }
 
-.ascii-art {
-  font-family: var(--font-hack-art), monospace;
-}
-
 @media (max-width: 640px) {
 
   .terminal-container {
