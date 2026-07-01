@@ -7,7 +7,7 @@
 @font-face {
   font-family: 'Hack';
   src: url('/fonts/Hack-NF.ttf') format('truetype');
-  font-display: block;
+  font-display: swap;
 }
 
 /* Tailwind CSS v4 Theme Configuration */
