@@ -10,6 +10,17 @@
   font-display: swap;
 }
 
+/* Hack Nerd Font - specific for ASCII art to prevent FOUT deformation */
+@font-face {
+  font-family: 'Hack-Art';
+  src: url('/fonts/Hack-NF.ttf') format('truetype');
+  font-display: block;
+}
+
+.ascii-art {
+  font-family: 'Hack-Art', monospace;
+}
+
 /* Tailwind CSS v4 Theme Configuration */
 @theme {
   /* Primary theme colors */
