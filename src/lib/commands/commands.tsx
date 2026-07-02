@@ -7,7 +7,7 @@ import React from 'react';
 
 // List of all available commands
 const CATEGORIES = {
-    "Info & Contact": ["about", "email", "gitee", "github", "projects", "readme", "whoami"],
+    "Info & Contact": ["about", "email", "github", "projects", "readme", "whoami"],
     "System & Cmds": ["banner", "cd", "clear", "date", "help", "ls"],
     "Web & Tools": ["bing", "google", "quote", "reddit", "weather", ...(isAliyun ? ["aliyun"] : [])],
     "Editors & Fun": ["echo", "emacs", "nvim", "vi", "vim"]
@@ -82,10 +82,7 @@ export const github = async (): Promise<string> => {
     return "Opening github...";
 };
 
-export const gitee = async (): Promise<string> => {
-    window.open(`https://gitee.com/${terminalConfig.gitee}`);
-    return "Opening gitee...";
-};
+
 
 // Search
 export const google = async (args: string[]): Promise<string> => {
@@ -161,7 +158,7 @@ export const banner = (quoteLines?: string[]): string | React.ReactNode => {
     }
 
     const infoData: InfoItem[] = [
-        { label: "Author", value: `<a class="hover:underline" href="${isAliyun ? `https://gitee.com/${terminalConfig.gitee}` : `https://github.com/${terminalConfig.github}`}" target="_blank">XERA-2011</a>` },
+        { label: "Author", value: `<a class="hover:underline" href="https://github.com/${terminalConfig.github}" target="_blank">XERA-2011</a>` },
         ...(!isAliyun ? [{ label: "Sites", value: terminalConfig.sites.map((site) => `<a class="hover:underline" href="${site.url}" target="_blank">${site.name}</a>`).join(" ") }] : []),
         ...(!isAliyun ? [{ label: "Social", value: terminalConfig.social.map((social) => `<a class="hover:underline" href="${social.url}" target="_blank">${social.name}</a>`).join(" ") }] : []),
         { label: "About", value: `<span  class="text-terminal-orange cursor-pointer hover:underline" onclick="window.executeCommand('about')">me</span>` },

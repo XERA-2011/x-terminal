@@ -1,6 +1,6 @@
 "use client";
 
-import { terminalConfig, isAliyun } from "@/terminal.config";
+import { terminalConfig } from "@/terminal.config";
 
 export const Ps1 = () => {
     return (
@@ -10,7 +10,7 @@ export const Ps1 = () => {
             </span>
             <span className="text-terminal-gray">@</span>
             <a
-                href={isAliyun ? terminalConfig.repo.gitee : terminalConfig.repo.github}
+                href={terminalConfig.repo.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-terminal-cyan no-underline hover:underline"

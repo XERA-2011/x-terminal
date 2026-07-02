@@ -7,7 +7,6 @@ export const terminalConfig = {
     name: "XERA-2011",
     email: "1138006034@qq.com",
     github: "XERA-2011",
-    gitee: "XERA-2011",
     sites: [
         {
             name: "blog",
@@ -37,7 +36,6 @@ export const terminalConfig = {
 
     repo: {
         github: "https://github.com/XERA-2011/x-terminal",
-        gitee: "https://gitee.com/XERA-2011/x-terminal",
     },
 
     // Site title
