@@ -3,11 +3,11 @@ import { GithubIcon } from "@/components/icons/github-icon";
 import { terminalConfig } from "@/terminal.config";
 import { MOVIE_QUOTES } from "@/lib/data/quotes";
 
-export default function Home() {
-    // Select quote at build time (server component) — keeps quotes out of client JS bundle
-    const randomQuote = MOVIE_QUOTES[Math.floor(Math.random() * MOVIE_QUOTES.length)];
-    const quoteLines = [randomQuote.english, randomQuote.chinese];
+// Select quote at build time — keeps quotes out of client JS bundle and satisfies react-hooks/purity
+const randomQuote = MOVIE_QUOTES[Math.floor(Math.random() * MOVIE_QUOTES.length)];
+const quoteLines = [randomQuote.english, randomQuote.chinese];
 
+export default function Home() {
     return (
         <div className="relative h-screen p-4 sm:p-8 font-mono bg-[#181818] text-terminal-foreground">
             {/* Repo Link */}

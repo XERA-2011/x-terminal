@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect, useCallback } from "react";
+import React, { useRef, useEffect } from "react";
 import { useHistory } from "@/lib/history";
 import { History } from "./history";
 import { Input } from "./input";
