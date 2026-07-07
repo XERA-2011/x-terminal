@@ -18,15 +18,20 @@ export const COMMANDS = Object.values(CATEGORIES).flat().sort();
 // Ailyun Projects
 export const aliyun = async (): Promise<string> => {
     if (!isAliyun) return "Command not available.";
+    
+    const hostname = typeof window !== 'undefined' ? window.location.hostname : 'localhost';
+    const protocol = typeof window !== 'undefined' ? window.location.protocol : 'http:';
+
     const projects = [
-        { name: "x-analytics", url: "/analytics/" },
-        { name: "x-texas-holdem", url: "/texas-holdem/" },
+        { name: "x-analytics", url: `${protocol}//${hostname}:2012` },
+        { name: "FileCodeBox", url: `${protocol}//${hostname}:2013` },
+        { name: "x-texas-holdem", url: `${protocol}//${hostname}:2014` },
     ];
 
     return projects
         .map(
             (repo) =>
-                `${repo.name} - <a href="${repo.url}" target="_blank">${repo.url}</a>`
+                `<a class="hover:underline text-terminal-cyan" href="${repo.url}" target="_blank">${repo.name}</a>`
         )
         .join("\n");
 };
