@@ -24,7 +24,7 @@ export const aliyun = async (): Promise<string> => {
 
     const projects = [
         { name: "x-analytics", url: `${protocol}//${hostname}:2012` },
-        { name: "FileCodeBox", url: `${protocol}//${hostname}:2013` },
+        { name: "FileCodeBox", url: `${protocol}//${hostname}:2013/#/admin/dashboard` },
         { name: "x-texas-holdem", url: `${protocol}//${hostname}:2014` },
     ];
 
