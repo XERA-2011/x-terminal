@@ -50,7 +50,9 @@ export const Terminal: React.FC<TerminalProps> = ({ quoteLines }) => {
 
     useEffect(() => {
         if (inputRef.current) {
-            inputRef.current.scrollIntoView();
+            if (history.length > 1) {
+                inputRef.current.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            }
             inputRef.current.focus({ preventScroll: true });
         }
     }, [history]);
