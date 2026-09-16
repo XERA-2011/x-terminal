@@ -4,7 +4,7 @@ import React, { useRef, useEffect } from "react";
 import { useHistory } from "@/lib/history";
 import { History } from "./history";
 import { Input } from "./input";
-import { banner } from "@/lib/commands";
+import { banner } from "@/lib/commands/banner";
 import { shell } from "@/lib/shell";
 
 // ...

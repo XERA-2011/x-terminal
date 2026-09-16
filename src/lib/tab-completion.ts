@@ -1,4 +1,4 @@
-import { COMMANDS } from "./commands";
+import { COMMANDS } from "./commands/constants";
 
 export const handleTabCompletion = (
     command: string,

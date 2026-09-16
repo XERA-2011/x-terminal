@@ -1,4 +1,4 @@
-import { COMMANDS } from "./commands";
+import { COMMANDS } from "./commands/constants";
 
 // Type for command functions
 type CommandFunction = (args: string[]) => Promise<string | React.ReactNode> | string | React.ReactNode;
