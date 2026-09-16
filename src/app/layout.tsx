@@ -6,6 +6,7 @@ const hackFont = localFont({
   src: '../../public/fonts/Hack-NF.woff2',
   display: 'block',
   variable: '--font-hack',
+  preload: false,
 });
 
 // 禁用页面缩放，避免移动端用户误操作
