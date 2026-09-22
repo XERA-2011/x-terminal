@@ -1,31 +1,10 @@
 // List of commands that do not require API calls
 
-import { terminalConfig, isAliyun } from "@/terminal.config";
+import { terminalConfig } from "@/terminal.config";
 import { projects } from "./api-commands";
 import { CATEGORIES } from "./constants";
 export { CATEGORIES, COMMANDS } from "./constants";
 export { banner } from "./banner";
-
-// Ailyun Projects
-export const aliyun = async (): Promise<string> => {
-    if (!isAliyun) return "Command not available.";
-    
-    const hostname = typeof window !== 'undefined' ? window.location.hostname : 'localhost';
-    const protocol = typeof window !== 'undefined' ? window.location.protocol : 'http:';
-
-    const projects = [
-        { name: "x-analytics", url: `${protocol}//${hostname}:2012` },
-        { name: "FileCodeBox", url: `${protocol}//${hostname}:2013/#/admin/dashboard` },
-        { name: "x-texas-holdem", url: `${protocol}//${hostname}:2014` },
-    ];
-
-    return projects
-        .map(
-            (repo) =>
-                `<a class="hover:underline text-terminal-cyan" href="${repo.url}" target="_blank">${repo.name}</a>`
-        )
-        .join("\n");
-};
 
 // Help
 export const help = async (): Promise<string> => {

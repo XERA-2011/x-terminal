@@ -41,7 +41,4 @@ export const terminalConfig = {
     // Site title
     title: "x-terminal",
 } as const;
-
-export const isAliyun = process.env.NEXT_PUBLIC_DEPLOY_TARGET === "aliyun";
-
 export type TerminalConfig = typeof terminalConfig;

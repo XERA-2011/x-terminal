@@ -17,11 +17,11 @@ export const viewport: Viewport = {
   userScalable: false,
 };
 
-import { terminalConfig, isAliyun } from "@/terminal.config";
+import { terminalConfig } from "@/terminal.config";
 
 export const metadata: Metadata = {
-  title: isAliyun ? "终端网页" : "x-terminal",
-  description: isAliyun ? "终端网页UI" : "Terminal Web UI",
+  title: "x-terminal",
+  description: "Terminal Web UI",
   keywords: [
     'terminal',
     'ui',

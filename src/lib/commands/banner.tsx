@@ -1,5 +1,5 @@
 import React from "react";
-import { terminalConfig, isAliyun } from "@/terminal.config";
+import { terminalConfig } from "@/terminal.config";
 import { TypingEffect } from "@/components/terminal/typing-effect";
 
 export const banner = (quoteLines?: string[]): string | React.ReactNode => {
@@ -20,8 +20,8 @@ export const banner = (quoteLines?: string[]): string | React.ReactNode => {
 
     const infoData: InfoItem[] = [
         { label: "Author", value: `<a class="hover:underline" href="https://github.com/${terminalConfig.github}" target="_blank">XERA-2011</a>` },
-        ...(!isAliyun ? [{ label: "Sites", value: terminalConfig.sites.map((site) => `<a class="hover:underline" href="${site.url}" target="_blank">${site.name}</a>`).join(" ") }] : []),
-        ...(!isAliyun ? [{ label: "Social", value: terminalConfig.social.map((social) => `<a class="hover:underline" href="${social.url}" target="_blank">${social.name}</a>`).join(" ") }] : []),
+        { label: "Sites", value: terminalConfig.sites.map((site) => `<a class="hover:underline" href="${site.url}" target="_blank">${site.name}</a>`).join(" ") },
+        { label: "Social", value: terminalConfig.social.map((social) => `<a class="hover:underline" href="${social.url}" target="_blank">${social.name}</a>`).join(" ") },
         { label: "About", value: `<span  class="text-terminal-orange cursor-pointer hover:underline" onclick="window.executeCommand('about')">me</span>` },
     ];
 
