@@ -113,7 +113,6 @@ export const Input: React.FC<InputProps> = ({
                     }`}
                 value={command}
                 onChange={onChange}
-                autoFocus
                 onKeyDown={onSubmit}
                 autoComplete="off"
                 spellCheck="false"
